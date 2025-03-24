@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_car.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="edit_car-form">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        {% if image %}
+        <p id="edit_car-form-main-image">Главное изображение</p>
+        <div class="edit_car-form-images">
+            <img src="{{ image.image.url }}" alt="">
+            <div class="edit_car-form-delete-images">
+                <button id="delete_image_button" name="delete_images" value="{{ image.id }}" formmethod="POST">Удалить главное фото</button>
+            </div>
+        </div>
+        {% else %}
+        <p id="edit_car-form-main-image-error">Главного изображения нет</p>
+        {% endif %}
+        <p id="edit_car-form-no-main-images">Вторичные изображения</p>
+        {% for img in images %}
+
+        <div class="edit_car-form-images">
+
+            <img src="{{ img.image.url }}" alt="">
+            <div class="edit_car-form-delete-images">
+                <button id="delete_images_button" name="delete_images" value="{{ img.id }}" formmethod="POST">Удалить доп. фото</button>
+
+            </div>
+        </div>
+        {% endfor %}
+        <button id="id_button">Отправить данные</button>
+    </form>
+
+</div>
+{% endblock %}

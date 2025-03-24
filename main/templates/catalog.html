@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+{% block main %}
+<form method="GET" class="filters">
+        <div class="filter-group">
+            <h3>Цена</h3>
+            <input type="number" name="price_min" value="{{ selected.price_min }}" placeholder="От">
+            <input type="number" name="price_max" value="{{ selected.price_max }}" placeholder="До">
+        </div>
+
+        <div class="filter-group">
+            <h3>Бренд</h3>
+            <select name="brand">
+                <option value="">Все бренды</option>
+                {% for brand in brands %}
+                <option value="{{ brand.id }}" {% if selected.brand == brand.id|stringformat:"i" %}selected{% endif %}>
+                    {{ brand.brand }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <h3>Модель</h3>
+            <select name="model">
+                {% if not models %}
+                <option value="">Сначала выберите Бренд</option>
+                {% else %}
+                <option value="">Все бренды</option>
+                {% endif %}
+                {% for model in models %}
+                <option value="{{ model.id }}" {% if selected.model == model.id|stringformat:"i" %}selected{% endif %}>
+                    {{ model }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+        <h3>Цвет</h3>
+        <select name="color" multiple class="color-select">
+            <option value=''
+                {% if '' in selected.colors %}selected{% endif %}
+                style="font-weight: bold; color: #666; background: #f8f9fa;">
+                ── Выберите цвет ──
+            </option>
+            {% for color in colors %}
+            <option value="{{ color.id }}"
+                {% if color.id|stringformat:"i" in selected.colors %}selected{% endif %}
+                style="--color: {{ color.hex_code }}">
+                {{ color }}
+            </option>
+            {% endfor %}
+        </select>
+        <div class="filter-hint">Зажмите Ctrl/Cmd для множественного выбора</div>
+    </div>
+
+        <button type="submit">Применить фильтры</button>
+</form>
+
+<div class="car-list-pagination">
+    <div class="car-list">
+        <!-- Пример карточки автомобиля -->
+        {% for car in cars %}
+        <li class="catalog-card-item">
+            <div class="product-image">
+                <img src="{{ car.main_image.image.url }}" alt="{{ car.model }}">
+            </div>
+            <h2 class="product-title">{{ car.model }} {{ car.brand }}</h2>
+            <p class="product-price">{{ car.price }}$</p>
+            <p class="product-description">{{ car.description }}</p>
+            <a href="{% url 'detail' car.id %}" class="detail-button">Подробнее</a>
+        </li>
+        {% endfor %}
+    </div>
+
+    <nav class="pagination">
+    <ul class="pagination-list">
+        {% if cars.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo;</a>
+            </li>
+        {% endif %}
+
+        {% for num in cars.paginator.get_elided_page_range %}
+            {% if num == cars.paginator.ELLIPSIS %}
+                <li class="page-item disabled">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% else %}
+                <li class="page-item {% if num == cars.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if cars.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ cars.paginator.num_pages }}">&raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+
+{% endblock %}

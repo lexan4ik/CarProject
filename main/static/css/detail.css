@@ -1,0 +1,120 @@
+
+.product-card {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    gap: 30px;
+}
+
+.product-info {
+    display: flex;
+}
+
+.product-info-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+/*    min-width: 520px;*/
+
+}
+
+.product-info-image-main {
+    min-width: 0px;
+    max-width: 500px;
+/*    max-width: 500px;*/
+/*    max-height:400px;*/
+    & div {
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.product-info-images-additional {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    & .slick-track {
+        gap: 30px;
+    }
+}
+
+.product-info-images-additional-image {
+    max-width: 150px;
+    max-height: 100px;
+     & img {
+        width: 250px;
+        height: 150px;
+        object-fit: contain;
+    }
+}
+
+.product-info-main {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+
+}
+.product-info-main-name {
+    padding-bottom: 30px;
+
+}
+
+.product-info-main-brand {
+    padding-bottom: 10px;
+    color: dimgray;
+    font-size: 15px;
+}
+
+.product-info-main-model {
+    padding-bottom: 30px;
+    color: dimgray;
+    font-size: 15px;
+}
+
+
+.product-info-main-price {
+    padding-bottom: 40px;
+}
+
+.product-description {
+    padding-bottom: 50px;
+}
+
+.product-info-main-buy-button__wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.product-info-main-buy-button, .product-info-main-edit-button, .product-info-main-edit_new-button {
+    background-color: #007bff; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без границы */
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    font-size: 1em; /* Размер шрифта кнопки */
+    margin-right: 20px;
+}
+
+
+.slick-slider {
+    min-width: 500px
+}
+
+.slick-list {
+    overflow: hidden;
+}
+
+.slick-track {
+    display: flex;
+}
+
+.slick-arrow {
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,65 @@
+.edit_car-form {
+    padding: 30px 205px 10px 250px;
+}
+
+#id_model {
+    width: 200px;
+    height: 20px;
+}
+
+#id_price {
+    width: 200px;
+    height: 20px;
+}
+
+#id_brand {
+    width: 200px;
+    height: 20px;
+}
+
+#id_description {
+    resize: none;
+}
+#id_button {
+    margin: 25px 250px 5px 225px;
+    background-color: #7897c4b0;
+    width: 250px;
+    height: 25px;
+}
+
+#edit_car-form-no-main-images,
+#edit_car-form-main-image {
+    padding-left: 180px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#edit_car-form-main-image-error {
+    padding-left: 180px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: darkred;
+}
+
+.edit_car-form-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 180px;
+    & img {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    }
+}
+
+.edit_car-form-delete-images {
+    padding-left: 15px;
+}
+
+#delete_image_button, #delete_images_button  {
+    background-color: #7897c4b0;
+    width: 140px;
+    height: 25px;
+}

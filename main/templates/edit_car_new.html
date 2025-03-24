@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_car_new.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="edit_car_new-form">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        {% if formset.non_form_errors %}
+            <div class="alert alert-danger">
+            {{ formset.non_form_errors }}
+            </div>
+        {% endif %}
+        <table>{{ formset.as_table }}</table>
+        <button id="id_button">Отправить данные</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,242 @@
+.container {
+    max-width: 1200px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.catalog-card-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px; /* Ширина блока карточки */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    margin: 20px; /* Отступ */
+    padding: 16px; /* Внутренние отступы */
+    text-align: center; /* Центрирование текста */
+    background-color: #fff; /* Фоновый цвет */
+}
+
+ /* Стили для секции фильтров */
+        .filters {
+            width: 280px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .colors {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-option.selected {
+            border-color: #000;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Стили для списка автомобилей */
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .car-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .car-info {
+            margin-top: 10px;
+        }
+
+        .car-info h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .car-price {
+            color: #007bff;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .car-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                margin-bottom: 20px;
+            }
+        }
+
+select[multiple] {
+    min-height: 120px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+select[multiple] option {
+    padding: 6px;
+    margin: 2px 0;
+    border-radius: 3px;
+}
+
+select[multiple] option:hover {
+    background: #f0f0f0;
+}
+
+select[multiple] option:checked {
+    background: #007bff;
+    color: white;
+}
+
+/* Контейнер пагинации */
+.pagination {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Список элементов */
+.pagination-list {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Элемент страницы */
+.page-item {
+    margin: 2px;
+}
+
+/* Ссылка на страницу */
+.page-link {
+    display: block;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Активная страница */
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Состояние ховера */
+.page-link:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+/* Неактивные элементы (предыдущая/следующая) */
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 576px) {
+    .pagination-list {
+        gap: 4px;
+    }
+
+    .page-link {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Многоточие (неактивный элемент) */
+.page-item.disabled .page-link {
+    cursor: default;
+    background-color: transparent;
+    border-color: transparent;
+    color: #666;
+}
+
+/* Убрать ховер для многоточия */
+.page-item.disabled .page-link:hover {
+    background-color: transparent;
+}

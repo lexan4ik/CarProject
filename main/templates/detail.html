@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="product-card">
+    <div class="product-info">
+        <div class="product-info-images">
+            <div class="product-info-image-main">
+                <div>
+                    <img src="{{ car.main_image.image.url }}" alt="">
+                </div>
+                {% for image in images %}
+                <div>
+                    <img src="{{ image.image.url }}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+            <div class="product-info-images-additional">
+                <div class="product-info-images-additional-image">
+                    <img src="{{ car.main_image.image.url }}" alt="">
+                </div>
+                {% for image in images %}
+                <div class="product-info-images-additional-image">
+                    <img src=" {{ image.image.url }}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        <div class="product-info-main">
+            <div class="product-info-main-name">{{ car.name }}</div>
+            <div class="product-info-main-brand">Бренд: {{ car.brand }}</div>
+            <div class="product-info-main-model">Модель: {{ car.model }}</div>
+            <div class="product-info-main-price">Цена: {{ car.price }}$</div>
+            <div class="product-description">{{ car.description }}</div>
+            <div class="product-info-main-buy-button__wrapper">
+                <a href="{% url 'edit_car' car.id %}" class="product-info-main-edit-button">Редактировать</a>
+                <a href="{% url 'edit_car_new' car.id %}" class="product-info-main-edit_new-button">Редактировать нов.</a>
+                <button class="product-info-main-buy-button">Купить</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
