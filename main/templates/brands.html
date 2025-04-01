@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/brands.css' %}">
+{% endblock %}
+
+{% block main %}
+<ul class="brand-list">
+        <!-- Пример карточки автомобиля -->
+        {% for brand in brands %}
+        <li>
+            <a href="{% url 'catalog' %}?brand={{ brand.id }}" class="brand-card-item">
+                <div class="product-image">
+                    <img src="{{ brand.image.url }}" alt="{{ brand.brand }}">
+                </div>
+                <h2 class="product-title">{{ brand.brand }}</h2>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
