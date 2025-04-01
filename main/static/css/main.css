@@ -214,3 +214,98 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+    /* CSS Для кнопки смены тем на JS */
+/*        *//* Скрываем чекбокс */
+/*        .theme-checkbox {*/
+/*            position: absolute;*/
+/*            opacity: 0;*/
+/*            pointer-events: none;*/
+/*        }*/
+
+/*        *//* Базовые стили темы */
+/*        :root {*/
+/*            --bg-color: #ffffff;*/
+/*            --text-color: #333333;*/
+/*            --btn-bg: #f0f0f0;*/
+/*            transition: all 0.3s ease;*/
+/*        }*/
+
+/*        *//* Темная тема */
+/*        .theme-checkbox:checked ~ .container {*/
+/*            --bg-color: #1a1a1a;*/
+/*            --text-color: #ffffff;*/
+/*            --btn-bg: #333333;*/
+/*        }*/
+
+/*        body {*/
+/*            margin: 0;*/
+/*            min-height: 100vh;*/
+/*            background: var(--bg-color);*/
+/*            color: var(--text-color);*/
+/*        }*/
+
+/*         Стили кнопки*/
+/*        .theme-toggle {*/
+/*            display: inline-flex;*/
+/*            align-items: center;*/
+/*            gap: 8px;*/
+/*            padding: 4px 18px;*/
+/*            background: var(--btn-bg);*/
+/*            color: var(--text-color);*/
+/*            border: none;*/
+/*            border-radius: 30px;*/
+/*            cursor: pointer;*/
+/*            font-family: Arial;*/
+/*            box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
+/*            font-size: 14px;*/
+/*        }*/
+
+/*         Иконка солнца/луны*/
+/*        .theme-toggle::before {*/
+/*            content: '☀️';*/
+/*            font-size: 1.2em;*/
+/*        }*/
+
+/*        .theme-checkbox:checked ~ .container .theme-toggle::before {*/
+/*            content: '🌙';*/
+/*        }*/
+    /* ^ CSS Для кнопки смены тем на JS ^ */
+
+
+    /* CSS Для кнопки смены тем на Django */
+/*         Дополнительный контент для демонстрации*/
+        .content {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid var(--text-color);
+            border-radius: 8px;
+        }
+
+        .light-theme {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --btn-bg: #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --btn-bg: #333333;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            background: var(--btn-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: Arial;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        /* ^ CSS Для кнопки смены тем на Django ^ */

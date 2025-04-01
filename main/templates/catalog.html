@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block main %}
+<!-- фильтр автомобилей -->
 <form method="GET" class="filters">
         <div class="filter-group">
             <h3>Цена</h3>
@@ -65,7 +66,7 @@
 
 <div class="car-list-pagination">
     <div class="car-list">
-        <!-- Пример карточки автомобиля -->
+        <!-- карточки автомобиля -->
         {% for car in cars %}
         <li class="catalog-card-item">
             <div class="product-image">
@@ -78,7 +79,7 @@
         </li>
         {% endfor %}
     </div>
-
+    <!-- пагинатор каталога -->
     <nav class="pagination">
     <ul class="pagination-list">
         {% if cars.has_previous %}

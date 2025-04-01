@@ -1,0 +1,28 @@
+ /* Стили для списка брендов */
+
+ .main__wrapper {
+     display: block;
+ }
+
+ .brand-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        place-items: center;
+    }
+
+
+ .brand-card-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px; /* Ширина блока карточки */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    margin: 20px; /* Отступ */
+    padding: 16px; /* Внутренние отступы */
+    text-align: center; /* Центрирование текста */
+    background-color: #fff; /* Фоновый цвет */
+}

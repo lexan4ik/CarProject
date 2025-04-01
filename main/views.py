@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
@@ -10,20 +11,40 @@ from django.db.models import OuterRef, Subquery, Exists, Prefetch
 
 # Create your views here.
 
+# Тема (меняли фон на пустой странице)
+def themes(request):
 
 
+    return render(request, 'themes.html')
+
+# Смена темы посредством Django, смена светлой и темной темы
+def current_theme(request):
+    print('Смена темы')
+
+    current_themes = request.session.get('theme')
+    print('theme', current_themes)
+    if current_themes == 'light':
+        new_theme = 'dark'
+    else:
+        new_theme = 'light'
+    request.session['theme'] = new_theme
+    print(request.META['HTTP_REFERER'])
+    return redirect(request.META['HTTP_REFERER'])
+
+# Логика главной страницы, вывод машин на страницу
 def get_main_page(request):
     cars = Car.objects.prefetch_related(
         Prefetch(
             'imagecar_set',
             queryset=ImageCar.objects.filter(is_main=True),
             to_attr='main_images')).all().select_related('brand', 'model')
-
+    print(request.session.get('theme'))
     context = {
         'cars': cars,
     }
     return render(request, 'main.html', context)
 
+# Логика страницы каталога, вывод машин в каталог и фильтрация их
 def catalog(request):
     cars = Car.objects.prefetch_related(
         Prefetch(
@@ -41,7 +62,6 @@ def catalog(request):
         'model': request.GET.get('model'),
         'brand': request.GET.get('brand'),
         'colors': request.GET.getlist('color'),
-
     }
 
     print(filters.get('brand'))
@@ -59,7 +79,7 @@ def catalog(request):
     else:
         cars = cars.filter(color__in=filters['colors']).distinct()
 
-    paginator = Paginator(cars, 1)
+    paginator = Paginator(cars, 6)
 
     page_number = request.GET.get('page')
 
@@ -81,6 +101,17 @@ def catalog(request):
 
     return render(request, 'catalog.html', context)
 
+# Логика страницы Брендов, вывод брендов на страницу
+def brands(request):
+    brands = Brand.objects.all()
+    print(request)
+    context = {
+        'brands': brands
+    }
+
+    return render(request, 'brands.html', context)
+
+# Логика страницы с добавлением машин, обработка форм и добавление
 def add_car(request):
     form = AddCarForm()
     if request.method == 'POST':
@@ -101,6 +132,7 @@ def add_car(request):
     }
     return render(request, 'add_car.html', context)
 
+# Логика для страниц машин по кнопке подробнее
 def detail(request, id):
     car = Car.objects.filter(id=id).prefetch_related(
         Prefetch(
@@ -118,6 +150,7 @@ def detail(request, id):
 
     return render(request, 'detail.html', context)
 
+# Логика изменения данных машин (стар.)
 def edit_car(request, id):
     car = get_object_or_404(Car, id=id)
     images = ImageCar.objects.filter(car=car, is_main=False)
@@ -158,6 +191,7 @@ def edit_car(request, id):
 
     return render(request, 'edit_car.html', context)
 
+#Функция для изменения машин (стар.)
 def check_is_main_image(car, form, images):
     if car.main_image:
         form.fields['is_main_image'].required = False
@@ -169,7 +203,7 @@ def check_is_main_image(car, form, images):
         form.fields['is_main_image'].required = True
         form.fields['image'].required = False
 
-
+# Логика изменения данных машин (нов.)
 def edit_car_new(request, id):
     car = get_object_or_404(Car, id=id)
     images = ImageCar.objects.filter(car=car)
