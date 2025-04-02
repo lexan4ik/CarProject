@@ -10,8 +10,8 @@ urlpatterns = [
     path('detail/<int:id>/', detail, name='detail'),
     path('edit_car/<int:id>/', edit_car, name='edit_car'),
     path('edit_car_new/<int:id>/', edit_car_new, name='edit_car_new'),
-    path('catalog/', catalog, name='catalog'),
+    path('catalogcatalog/', catalog, name='catalog'),
     path('brands/', brands, name='brands'),
     path('themes', themes),
-    path('/', current_theme, name='current_theme'),
+    path('', current_theme, name='current_theme'),
 ]

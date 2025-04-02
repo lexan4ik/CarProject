@@ -31,19 +31,25 @@
             </div>
         </div>
     </div>
-        <div class="product-info-main">
-            <div class="product-info-main-name">{{ car.name }}</div>
-            <div class="product-info-main-brand">Бренд: {{ car.brand }}</div>
-            <div class="product-info-main-model">Модель: {{ car.model }}</div>
-            <div class="product-info-main-price">Цена: {{ car.price }}$</div>
-            <div class="product-description">{{ car.description }}</div>
-            <div class="product-info-main-buy-button__wrapper">
-                <a href="{% url 'edit_car' car.id %}" class="product-info-main-edit-button">Редактировать</a>
-                <a href="{% url 'edit_car_new' car.id %}" class="product-info-main-edit_new-button">Редактировать нов.</a>
-                <button class="product-info-main-buy-button">Купить</button>
-            </div>
+    <div class="product-info-main">
+        <div class="product-info-main-name">{{ car.name }}</div>
+        <div class="product-info-main-brand">Бренд: {{ car.brand }}</div>
+        <div class="product-info-main-model">Модель: {{ car.model }}</div>
+        <div class="product-info-main-price">Цена: {{ car.price }}$</div>
+        <div class="product-description">{{ car.description }}</div>
+        <form action="{% url 'cart_add' car.id %}" method="post" class="buy-form" id="buy-form">
+            {{ cart_product_form }}
+            {% csrf_token %}
+        </form>
+        <div class="product-info-main-buy-button__wrapper">
+            <a href="{% url 'edit_car' car.id %}" class="product-info-main-edit-button">Редактировать</a>
+            <a href="{% url 'edit_car_new' car.id %}" class="product-info-main-edit_new-button">Редактировать нов.</a>
+
+            <button class="product-info-main-buy-button" form="buy-form">Купить</button>
+
         </div>
     </div>
+</div>
 
 </div>
 {% endblock %}

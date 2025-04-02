@@ -89,6 +89,13 @@
     justify-content: flex-end;
 }
 
+.buy-form {
+    display: flex;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    justify-content: end;
+}
+
 .product-info-main-buy-button, .product-info-main-edit-button, .product-info-main-edit_new-button {
     background-color: #007bff; /* Цвет кнопки */
     color: white; /* Цвет текста кнопки */

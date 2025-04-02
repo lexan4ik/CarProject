@@ -50,27 +50,43 @@
                     </button>
                 </form>
             </div>
-                                        <!-- Смена тем посредством JS -->
+            <!-- Смена тем посредством JS -->
             <!-- Для того чтобы включить смену тем на JS, нужно раскомментировать в static/css/main.css -->
-                <!-- с 220 по 272 и закомментировать css для тем Django там же с 278 по 310 строку  -->
+            <!-- с 220 по 272 и закомментировать css для тем Django там же с 278 по 310 строку  -->
             <!-- В этом файле комментируем строки с 45 по 52 и раскомментируем строки ниже по 70 строку -->
-<!--                <div class="value-display">-->
-<!--                    Текущая тема: {{ current_theme }}-->
-<!--                </div>-->
-<!--            <ul>-->
-<!--                <li class="navigation-change-theme">-->
-<!--                    &lt;!&ndash; Чекбокс для управления темой &ndash;&gt;-->
-<!--                    <input type="checkbox" id="themeSwitch" class="theme-checkbox">-->
+            <!--                <div class="value-display">-->
+            <!--                    Текущая тема: {{ current_theme }}-->
+            <!--                </div>-->
+            <!--            <ul>-->
+            <!--                <li class="navigation-change-theme">-->
+            <!--                    &lt;!&ndash; Чекбокс для управления темой &ndash;&gt;-->
+            <!--                    <input type="checkbox" id="themeSwitch" class="theme-checkbox">-->
 
-<!--                    <div class="container">-->
-<!--                        &lt;!&ndash; Кнопка-переключатель &ndash;&gt;-->
-<!--                        <label for="themeSwitch" class="theme-toggle">Сменить тему</label>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <!--                    <div class="container">-->
+            <!--                        &lt;!&ndash; Кнопка-переключатель &ndash;&gt;-->
+            <!--                        <label for="themeSwitch" class="theme-toggle">Сменить тему</label>-->
+            <!--                    </div>-->
+            <!--                </li>-->
+            <!--            </ul>-->
+            <a href="{% url 'cart' %}" class="basket">
+                <p>Корзина</p>
+                <p>{{ cart|length }}</p>
+            </a>
             <ul class="autorization">
+                {% if user.is_authenticated %}
                 <li class="autorization">
                     <a href="#" class="autorization-item-link">
+                        {{ user.username }}
+                    </a>
+                </li>
+                <li class="autorization">
+                    <a href="{% url 'user_logout' %}" class="autorization-item-link">
+                        Выйти
+                    </a>
+                </li>
+                {% else %}
+                <li class="autorization">
+                    <a href="{% url 'user_login' %}" class="autorization-item-link">
                         Вход
                     </a>
                 </li>
@@ -79,6 +95,7 @@
                         Регистрация
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>

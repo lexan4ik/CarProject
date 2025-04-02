@@ -4,6 +4,7 @@ from pprint import pprint
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
+from cart.forms import CartAddProductForm
 from main.forms import AddCarForm, EditCarFrom, EditImageCarForm, ImagesFormSet
 from main.models import Car, ImageCar, Brand, Color, Model
 from django.db.models import OuterRef, Subquery, Exists, Prefetch
@@ -140,12 +141,14 @@ def detail(request, id):
             queryset=ImageCar.objects.filter(is_main=True),
             to_attr='main_images')).all().select_related('brand', 'model')
 
-
     images = ImageCar.objects.filter(car__in=car, is_main=False)
+
+    cart_product_form = CartAddProductForm()
 
     context = {
         'car': car[0],
         'images': images,
+        'cart_product_form': cart_product_form,
     }
 
     return render(request, 'detail.html', context)

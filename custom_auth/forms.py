@@ -6,6 +6,7 @@ class Registration(forms.ModelForm):
 
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = User
 
@@ -18,3 +19,10 @@ class Registration(forms.ModelForm):
         conf_pass = cd.get('confirm_password')
         if pass1 != conf_pass:
             raise forms.ValidationError('Пароли не совпадают!')
+
+class LoginForm(forms.Form):
+
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+

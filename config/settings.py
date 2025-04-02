@@ -32,6 +32,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+#Корзина
+CART_SESSION_ID = 'cart'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'main', # подключение приложения main
     'custom_auth', # подключение приложения аунтефикации
+    'cart', # подключение приложения корзины
 
 ]
 
@@ -72,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
                 'main.context_processors.main_dark_theme',
             ],
         },
