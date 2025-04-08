@@ -1,0 +1,84 @@
+
+.user-login {
+    margin: 30px 205px 10px 250px;
+    & table {
+    margin-left: 215px;
+}
+}
+
+#id_username {
+    width: 200px;
+    height: 20px;
+}
+
+#id_password {
+    width: 200px;
+    height: 20px;
+}
+
+.confirm_login {
+    margin: 25px 250px 5px 225px;
+    background-color: #7897c4b0;
+    width: 250px;
+    height: 25px;
+}
+
+.have_account_or_registration {
+    display: flex;
+    margin-left: 65px;
+}
+
+#id_reset_password {
+    margin: 0 65px 0 20px;
+}
+
+#id_account_registration {
+    margin-left: 20px;
+}
+
+/*Авторизация по гугл*/
+.google-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #ddd;
+  color: rgba(0,0,0,0.75);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto;
+  cursor: pointer;
+    margin-left: 200px;
+}
+
+.google-auth-btn:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+.google-auth-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.google-icon {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .google-auth-btn {
+    background: #333;
+    border-color: #444;
+    color: white;
+  }
+}
+/*Авторизация по гугл*/

@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('main.urls')),
     path('my_auth/', include('custom_auth.urls')),
     path('cart/', include('cart.urls')),
+    path('create_order/', include('orders.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social'))
 ] + debug_toolbar_urls()
 
 if settings.DEBUG:

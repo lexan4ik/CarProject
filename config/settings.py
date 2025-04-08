@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from unittest.mock import DEFAULT
 
+from django.conf.global_settings import DEFAULT_FROM_EMAIL, SERVER_EMAIL, LOGIN_URL
 from dotenv import dotenv_values
 
 env_keys = dotenv_values()
@@ -29,11 +31,43 @@ SECRET_KEY = env_keys.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com']
 
+# Авторизация через Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '862159307437-4jppvbe2urtpov42vsipnk2l1v2dkh1e.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Consumer Secret
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+# Перенаправляет на этот путь при любой авторизации
+LOGIN_REDIRECT_URL = "/my_auth/account/"
+
+
+# Подключение SMTP сервера
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = env_keys.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env_keys.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+# Редирект после смены пароля на наш шаблон авторизации
+LOGIN_URL = '/my_auth/login/'
 
 #Корзина
 CART_SESSION_ID = 'cart'
+
 
 # Application definition
 
@@ -45,10 +79,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'social_django', # Для авторизаций через сторонние сервисы
     'main', # подключение приложения main
     'custom_auth', # подключение приложения аунтефикации
     'cart', # подключение приложения корзины
-
+    'orders', # Подключение приложения оформления заказов
 ]
 
 MIDDLEWARE = [
@@ -72,12 +107,15 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'social_django.context_processors.backends', # бэкэнды для авторизации через соц
+                'social_django.context_processors.login_redirect', # бэкэнды для авторизации через соц
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
                 'main.context_processors.main_dark_theme',
+
             ],
         },
     },
@@ -123,7 +161,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
