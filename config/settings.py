@@ -31,7 +31,7 @@ SECRET_KEY = env_keys.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysite.com']
+ALLOWED_HOSTS = ['mysite.com', '127.0.0.1']
 
 # Авторизация через Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env_keys.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY') # Google Consumer Key
