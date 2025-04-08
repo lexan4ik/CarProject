@@ -34,8 +34,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['mysite.com']
 
 # Авторизация через Google
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '862159307437-4jppvbe2urtpov42vsipnk2l1v2dkh1e.apps.googleusercontent.com' # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env_keys.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY') # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env_keys.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET') # Google Consumer Secret
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
