@@ -13,5 +13,5 @@ urlpatterns = [
     path('catalogcatalog/', catalog, name='catalog'),
     path('brands/', brands, name='brands'),
     path('themes', themes),
-    path('', current_theme, name='current_theme'),
+    path('/', current_theme, name='current_theme'),
 ]

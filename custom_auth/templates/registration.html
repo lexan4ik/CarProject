@@ -6,11 +6,17 @@
 {% endblock %}
 
 {% block main %}
-<form method="post">
+<form method="post" class="registration-form">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
     <button class="confirm_registration">Зарегистрироваться</button>
+    <div class="have-account">
+    <p>Уже есть аккаунт?</p>
+    <a href="{% url 'user_login' %}" id="id_have_account_link">Войти</a>
+</div>
 </form>
+
+
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/reset_password.css' %}">
+{% endblock %}
+
+{% block main %}
+<form method="post" class="reset-password">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button class="confirm_login">Сбросить пароль</button>
+
+</form>
+{% endblock %}

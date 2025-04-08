@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/change_password.css' %}">
+
+{% endblock %}
+
+{% block main %}
+<form method="post" class="change-password">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button class="change-password-button">Сменить пароль</button>
+</form>
+{% endblock %}

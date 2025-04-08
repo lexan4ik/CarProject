@@ -75,7 +75,7 @@
             <ul class="autorization">
                 {% if user.is_authenticated %}
                 <li class="autorization">
-                    <a href="#" class="autorization-item-link">
+                    <a href="{% url 'account' %}" class="autorization-item-link">
                         {{ user.username }}
                     </a>
                 </li>
