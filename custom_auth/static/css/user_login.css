@@ -1,9 +1,13 @@
 
-.user-login {
-    margin: 30px 205px 10px 250px;
-    & table {
-    margin-left: 215px;
+.main__wrapper  {
+    justify-content: center;
+    padding: 20px 0;
 }
+
+.user-login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #id_username {
@@ -17,15 +21,15 @@
 }
 
 .confirm_login {
-    margin: 25px 250px 5px 225px;
+    margin: 20px 0;
     background-color: #7897c4b0;
-    width: 250px;
+    width: 200px;
     height: 25px;
 }
 
 .have_account_or_registration {
     display: flex;
-    margin-left: 65px;
+
 }
 
 #id_reset_password {

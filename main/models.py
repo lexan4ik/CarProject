@@ -26,6 +26,7 @@ class Car(models.Model):
         return self.imagecar_set.filter(is_main=True).first()
 
 class Color(models.Model):
+
     color = models.CharField(max_length=50)
 
     def __str__(self):

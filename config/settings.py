@@ -79,6 +79,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'rest_framework', # Подключение REST для создания  API
+    'custom_api', # Подключение приложение API
     'social_django', # Для авторизаций через сторонние сервисы
     'main', # подключение приложения main
     'custom_auth', # подключение приложения аунтефикации
@@ -95,6 +97,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 
 ]
 

@@ -292,3 +292,13 @@ def edit_car_new(request, id):
 def image_is_main(car, is_main: bool):
     image_is_main = ImageCar.objects.filter(car=car, is_main=is_main)
     return image_is_main
+
+
+def add_car_api(request):
+    form = AddCarForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'add_car_api.html', context)

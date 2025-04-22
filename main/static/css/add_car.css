@@ -20,10 +20,19 @@
 
 #id_description {
     resize: none;
+    border: 1px solid black;
 }
 #id_button {
     margin: 25px 250px 5px 225px;
     background-color: #7897c4b0;
     width: 250px;
     height: 25px;
+}
+
+input {
+    border: 1px solid black;
+}
+
+.input_error {
+    border: 1px solid red;
 }

@@ -8,11 +8,14 @@
 {% block main %}
 
 <div class="add_car-form">
-    <form action="{% url ''" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'api_cars' %}" method="POST" enctype="multipart/form-data" id="cars_form">
         {% csrf_token %}
         <table>{{ form.as_table }}</table>
-        <button id="id_button">Отправить данные</button>
+        <button id="id_button" type="button">Отправить данные</button>
     </form>
 </div>
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'js/add_car_api.js' %}"></script>
+{% endblock %}

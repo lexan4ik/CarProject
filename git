@@ -1,0 +1,103 @@
+[33mcommit 32c5142a1c9c12e15dd8813078c97745e6bef469[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 8 09:37:49 2025 +0300
+
+    Добавлена авторизация через Google аккаунт
+
+[33mcommit 3a38555179dacdbfa097fd801d7aa6ee8639aa07[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 8 09:36:48 2025 +0300
+
+    Много остальных изменений
+
+[33mcommit e97d4b5023770c01115e9bed14e08b4e561b585e[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 8 09:36:36 2025 +0300
+
+    Много остальных изменений
+
+[33mcommit 0d4af95318a65a09918aa9fce9be55c9b1b3717a[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 8 09:36:14 2025 +0300
+
+    Добавлена валидация пароля
+
+[33mcommit 597d0f6eed355189cc7663d87867240e4e6792c8[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 8 09:35:29 2025 +0300
+
+    Добавлена авторизация через google аккаунт
+
+[33mcommit 996f0281c4b79952cde3a740776cb7e94a9ca69b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Wed Apr 2 22:26:58 2025 +0300
+
+    Тут много изменений
+
+[33mcommit e6258fb46bfb0dda3e825c0ec0e5133232a10772[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Wed Apr 2 22:26:39 2025 +0300
+
+    Тут много изменений
+
+[33mcommit 70522188888af501f65d99f4e58a7d2826921499[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 1 11:40:18 2025 +0300
+
+    Тут много изменений
+
+[33mcommit 27ad32f332c67547d5d6473d31ab8ed63f3c4199[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Tue Apr 1 11:24:15 2025 +0300
+
+    Тут много изменений
+
+[33mcommit 126a681d1fa09cd5898821ff1225771e7b87a519[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 24 22:02:31 2025 +0300
+
+    Тут много изменений
+
+[33mcommit 2fcd5e9344c8ec6e7e0890254fc8e474235a7a0d[m
+Merge: 58ec03a 8c5518a
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 21:53:53 2025 +0300
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 58ec03a7ab7d84afde531cea5fd2371a5a7acfca[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 21:52:42 2025 +0300
+
+    Создание модели, настройка бд и приложения
+
+[33mcommit 8c5518a04e3a2afb7098d9284de1725e0b993f01[m
+Merge: 78cdc78 d3ae5a1
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 21:10:15 2025 +0300
+
+    Ggg
+
+[33mcommit 78cdc7867efa2c883d21ce49c3404d231e0acb4a[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 21:08:59 2025 +0300
+
+    newcommit
+
+[33mcommit d3ae5a16bb8a1c606c39dbb15483c4d07ca672c6[m
+Author: lexan4ik <48456739+lexan4ik@users.noreply.github.com>
+Date:   Mon Mar 3 21:08:05 2025 +0300
+
+    Delete .idea directory
+
+[33mcommit a2464a0cde1b2ab4b632296d897856bc4c775afc[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 20:53:48 2025 +0300
+
+    add requirements
+
+[33mcommit b43d681ab37884e32d8e1be53e580cfea69320e1[m
+Author: lexan4ik <glushnevich@inbox.ru>
+Date:   Mon Mar 3 20:30:22 2025 +0300
+
+    first commit
