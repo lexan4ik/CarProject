@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (get_main_page, add_car, detail,
                     edit_car, edit_car_new, catalog,
-                    brands, themes, current_theme, add_car_api)
+                    brands, themes, current_theme, add_car_api, search_page)
 
 urlpatterns = [
     path('', get_main_page, name='main'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('themes', themes),
     path('/', current_theme, name='current_theme'),
     path('add_car_api/', add_car_api),
+    path('search_page/', search_page),
 ]

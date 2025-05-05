@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search_page.css' %}">
+{% endblock %}
+
+{% block main %}
+<!-- фильтр автомобилей -->
+<div class="car-list-pagination">
+    <div class="car-list">
+        <!-- карточки автомобиля -->
+        {% for car in cars %}
+        <li class="catalog-card-item">
+            <div class="product-image">
+                <img src="{{ car.main_image.image.url }}" alt="{{ car.model }}">
+            </div>
+            <h2 class="product-title">{{ car.model }} {{ car.brand }}</h2>
+            <p class="product-price">{{ car.price }}$</p>
+            <p class="product-description">{{ car.description }}</p>
+            <a href="{% url 'detail' car.id %}" class="detail-button">Подробнее</a>
+        </li>
+        {% endfor %}
+    </div>
+    <!-- пагинатор каталога -->
+    <nav class="pagination">
+    <ul class="pagination-list">
+        {% if cars.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1&brand={{ search }}">&laquo;</a>
+            </li>
+        {% endif %}
+
+        {% for num in cars.paginator.get_elided_page_range %}
+            {% if num == cars.paginator.ELLIPSIS %}
+                <li class="page-item disabled">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+            {% else %}
+                <li class="page-item {% if num == cars.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}&brand={{ search }}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if cars.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ cars.paginator.num_pages }}&brand={{ search }}">&raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+
+{% endblock %}

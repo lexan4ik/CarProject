@@ -31,11 +31,11 @@ class ColorSerializer(serializers.Serializer):
 
 
 
-# class ImageCarSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = ImageCar
-#         fields = '__all__'
+class GetImageCarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ImageCar
+        fields = ['id', 'image', 'is_main']
 
 
 class ImageCarSerializer(serializers.Serializer):
@@ -119,11 +119,13 @@ class ImageCarSerializer(serializers.Serializer):
 class CarSerializer(serializers.Serializer):
 
     id = serializers.IntegerField()
+    name = serializers.CharField(max_length=100)
     price = serializers.DecimalField(max_digits=10, decimal_places=2)
     description = serializers.CharField()
     model = ModelSerializer()
     color = ColorSerializer(many=True)
-    imagecar_set = ImageCarSerializer(many=True)
+    imagecar_set = GetImageCarSerializer(many=True)
+    main_image = GetImageCarSerializer()
 
 
 class CarNewValidateSerializer(serializers.ModelSerializer):

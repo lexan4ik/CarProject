@@ -1,6 +1,8 @@
 import random
 from pprint import pprint
 
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -8,9 +10,31 @@ from cart.forms import CartAddProductForm
 from main.forms import AddCarForm, EditCarFrom, EditImageCarForm, ImagesFormSet
 from main.models import Car, ImageCar, Brand, Color, Model
 from django.db.models import OuterRef, Subquery, Exists, Prefetch
+from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
+
+#Страница всех результатов поиска
+def search_page(request):
+    print('get', request.GET)
+    cars = Car.objects.filter(description__icontains=request.GET.get('brand'))
+
+    paginator = Paginator(cars, 3)
+
+    page_number = request.GET.get('page')
+
+    page_obj = paginator.get_page(page_number)
+
+    page_obj.elided_page_range = paginator.get_elided_page_range(page_number, on_each_side=2, on_ends=1)
+
+    context = {
+        'cars': page_obj,
+        'search': request.GET.get('brand'),
+
+    }
+
+    return render(request, 'search_page.html', context)
 
 # Тема (меняли фон на пустой странице)
 def themes(request):
@@ -33,19 +57,28 @@ def current_theme(request):
     return redirect(request.META['HTTP_REFERER'])
 
 # Логика главной страницы, вывод машин на страницу
+#@cache_page(60 * 10, key_prefix='main_page')
 def get_main_page(request):
-    cars = Car.objects.prefetch_related(
-        Prefetch(
-            'imagecar_set',
-            queryset=ImageCar.objects.filter(is_main=True),
-            to_attr='main_images')).all().select_related('brand', 'model')
+    main_page_cache = cache.get('main_page')
+    if main_page_cache is None:
+        cars = Car.objects.prefetch_related(
+            Prefetch(
+                'imagecar_set',
+                queryset=ImageCar.objects.filter(is_main=True),
+                to_attr='main_images')).all().select_related('brand', 'model').order_by('-id')
+        cache.set('main_page', cars)
+        print('кэш', cache.get('main_page'))
     print(request.session.get('theme'))
     context = {
-        'cars': cars,
+        'cars': main_page_cache,
     }
     return render(request, 'main.html', context)
 
+def admin_check(user):
+    return user.is_authenticated and user.is_superuser
+
 # Логика страницы каталога, вывод машин в каталог и фильтрация их
+@user_passes_test(admin_check)
 def catalog(request):
     cars = Car.objects.prefetch_related(
         Prefetch(
@@ -210,7 +243,6 @@ def check_is_main_image(car, form, images):
 def edit_car_new(request, id):
     car = get_object_or_404(Car, id=id)
     images = ImageCar.objects.filter(car=car)
-    print(car.color.all())
     initial_dict = {
         'name': car.name,
         'model': car.model,

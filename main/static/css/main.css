@@ -328,3 +328,33 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 /* ^ CSS Для кнопки смены тем на Django ^ */
+
+
+.search__drop-down {
+    display: none;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.search__drop-item {
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 5px;
+    gap: 10px;
+    &:hover {
+    background-color: gray;
+}
+}
+
+.search__drop-item-img {
+    max-height: 50px;
+    max-width: 70px;
+    & img {
+    width: 100%;
+    height: 100%;
+}
+}
