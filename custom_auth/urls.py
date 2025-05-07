@@ -1,5 +1,3 @@
-from tkinter.font import names
-
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, \
     PasswordResetCompleteView
 from django.urls import path, include

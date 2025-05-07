@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 from unittest.mock import DEFAULT
 
-from django.conf.global_settings import DEFAULT_FROM_EMAIL, SERVER_EMAIL, LOGIN_URL
+from django.conf.global_settings import DEFAULT_FROM_EMAIL, SERVER_EMAIL, LOGIN_URL, STATICFILES_DIRS
 from dotenv import dotenv_values
 
 env_keys = dotenv_values()
@@ -31,7 +31,7 @@ SECRET_KEY = env_keys.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysite.com', '127.0.0.1']
+ALLOWED_HOSTS = ['mysite.com', '127.0.0.1', 'localhost']
 
 # Авторизация через Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env_keys.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY') # Google Consumer Key
@@ -94,6 +94,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -138,7 +139,8 @@ DATABASES = {
         'NAME': env_keys.get('DB_NAME'),
         'USER': env_keys.get('DB_USER'),
         'PASSWORD': env_keys.get('DB_PASSWORD'),
-        'HOST': env_keys.get('DB_HOST'),
+        # 'HOST': env_keys.get('DB_HOST'),
+        'HOST': "db",
         'PORT': env_keys.get('DB_PORT')
     }
 }
@@ -179,8 +181,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = 'media/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -1,0 +1,32 @@
+version: '3.8'  # Версия синтаксиса docker-compose
+
+services:
+  web: # Сервис для Django-приложения
+    build: .  # Сборка из Dockerfile в текущей директории
+    env_file:
+      - .env
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 config.wsgi:application" # Команда запуска
+    volumes: # Монтируем код приложения для hot-reload
+      - .:/app
+      - static_volume:/app/static
+    ports: # Проброс порта Django
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db: # Сервис для PostgreSQL
+    image: postgres:16  # Официальный образ PostgreSQL 13 (легковесный alpine)
+    environment: # Переменные окружения для БД
+      POSTGRES_DB: cardb  # Имя базы данных
+      POSTGRES_USER: caruser  # Пользователь БД
+      POSTGRES_PASSWORD: admin  # Пароль пользователя
+    ports: # Проброс порта (для локального подключения)
+      - "5432:5432"
+    healthcheck: # Проверка доступности БД
+      test: [ "CMD-SHELL", "pg_isready -U caruser -d cardb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  static_volume:
